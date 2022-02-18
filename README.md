@@ -48,8 +48,6 @@ prior to running these libraries, install them from the command line:
 
 ## Usage
 
-# Module 12 Report Template
-
 ## Overview of the Analysis
 
 In this section, describe the analysis you completed for the machine learning models used in this Challenge. This might include:
