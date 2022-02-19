@@ -2,9 +2,9 @@
 
 UNCC Online FinTech Bootcamp Module 12 Challenge due by 11:59pm 2/27/2022
 
-![](Images/olena-sergienko-3BlVILvh9hM-unsplash.jpg)
+![](Images/model_fit_predict.png)
 
-photo by [Olena Sergienko on unsplash](https://unsplash.com/photos/3BlVILvh9hM)
+image from [courses.bootcampspot.com](https://courses.bootcampspot.com/courses/980/pages/12-dot-1-4-model-fit-predict?module_item_id=377651)
 
 ---
 
@@ -48,36 +48,34 @@ prior to running these libraries, install them from the command line:
 
 ## Usage
 
-## Overview of the Analysis
+### Overview of the Analysis
 
-In this section, describe the analysis you completed for the machine learning models used in this Challenge. This might include:
+* The purpose of this analysis is to see whether or not we get better predictive power by oversampling the imbalanced dataset, for the ultimate purpose of predicting whether a loan will be profitable (i.e. 'healthy'), or could cause a loss (i.e. 'high-risk').
+* The dataset contains 7 features and one target related to classifying loans as 'healthy' or 'high-risk'.
+* The dataset contains 75,036 healthy loans, and 2,500 high-risk loans.
+* The stages of the machine learning process included: 
+    - Splitting the data into training and testing datasets by using `train_test_split`;
+    - Fitting a logistic regression model by using the training data (`X_train` and `y_train`); and
+    - Testing the predictive power of the model using the `X_test` data.
+* For this analysis, we will use `LogisticRegression`, with and without oversampling. The purpose of oversampling is to give the minority class (i.e. 'high-risk' loans) greater visibility during the fitting of the model.
 
-* Explain the purpose of the analysis.
-* Explain what financial information the data was on, and what you needed to predict.
-* Provide basic information about the variables you were trying to predict (e.g., `value_counts`).
-* Describe the stages of the machine learning process you went through as part of this analysis.
-* Briefly touch on any methods you used (e.g., `LogisticRegression`, or any resampling method).
+### Results
 
-## Results
+Below is a description of the balanced accuracy scores and the precision and recall scores of the machine learning models.
 
-Using bulleted lists, describe the balanced accuracy scores and the precision and recall scores of all machine learning models.
+* Logistic Regression, using original data (i.e. No resampling):
+  * Accuracy (`balanced_accuracy_score`): 95.2%;
+  * Precision, and Recall scores: 100%/85%; 99%/91%, respectively (healthy vs high-risk)
+  ![](Images/class_report_orig_data.png)
 
-* Machine Learning Model 1:
-  * Description of Model 1 Accuracy, Precision, and Recall scores.
+* Logistic Regression, using **resampled data** (`RandomOverSampler`):
+  * Accuracy (`balanced_accuracy_score`): 99.4%;
+  * Precision, and Recall scores: 100%/84%; 99%/99%, respectively (healthy vs high-risk)
+  ![](Images/class_report_oversampled.png)
+  
+### Summary
 
-
-
-* Machine Learning Model 2:
-  * Description of Model 2 Accuracy, Precision, and Recall scores.
-
-## Summary
-
-Summarize the results of the machine learning models, and include a recommendation on the model to use, if any. For example:
-* Which one seems to perform best? How do you know it performs best?
-* Does performance depend on the problem we are trying to solve? (For example, is it more important to predict the `1`'s, or predict the `0`'s? )
-
-If you do not recommend any of the models, please justify your reasoning.
-
+Overall, our predictive power increased by using the Random Oversampling method. We see that our accuracy improved from 95% to 99% (`balanced_accuracy_score`). Even though the precision for the high-risk loans was  slightly lower at 84% (down from 85%), great improvement was seen in the recall rate for high-risk loans, to 99% (up from 91% in the original imbalanced dataset); and so f1 score also improved in the high-risk loans from 88% to 91%. I'd say the logistic regression model worked well in this case using oversampled data, to give the minority class more visibility during the training phase. In this case, it was important to be able to predict the high-risk loans (target=1) since it only takes a few bad loans to wipe out the profits generated from many good loans.
 
 ---
 
